@@ -22,9 +22,9 @@ func (commentRepository _commentRepository) CreateComment(ctx context.Context, c
 	var id int
 
 	err := commentRepository.db.PgConn.QueryRow(ctx,
-		`INSERT INTO public.comment(text, userID, postID) values ($1,$2,$3) RETURNING id`,
+		`INSERT INTO public.comment(text, user, postID) values ($1,$2,$3) RETURNING id`,
 		commentDb.Text,
-		commentDb.UserID,
+		commentDb.User,
 		commentDb.PostID).Scan(&id)
 
 	return id, err
@@ -34,8 +34,8 @@ func (commentRepository _commentRepository) GetComment(ctx context.Context, comm
 	var comment dbModel.Comment
 
 	err := commentRepository.db.PgConn.QueryRow(ctx,
-		`SELECT c.text, c.userID, c.postID FROM public.comment c WHERE c.id=$1`,
-		commentId).Scan(&comment.Text, &comment.UserID, &comment.PostID)
+		`SELECT c.text, c.user, c.postID FROM public.comment c WHERE c.id=$1`,
+		commentId).Scan(&comment.Text, &comment.User, &comment.PostID)
 
 	if err != nil {
 		return model.Comment{}, fmt.Errorf("ошибка получения комментария: %s", err.Error())
@@ -58,9 +58,9 @@ func (commentRepository _commentRepository) UpdateComment(ctx context.Context, c
 	commentDb := dbModel.Comment(comment)
 
 	_, err := commentRepository.db.PgConn.Exec(ctx,
-		`UPDATE public.comment SET text=$1, userID=$2, postID=$3 WHERE id=$4`,
+		`UPDATE public.comment SET text=$1, user=$2, postID=$3 WHERE id=$4`,
 		commentDb.Text,
-		commentDb.UserID,
+		commentDb.User,
 		commentDb.PostID,
 		commentId)
 

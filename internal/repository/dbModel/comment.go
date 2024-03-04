@@ -2,6 +2,6 @@ package dbModel
 
 type Comment struct {
 	Text   string `db:"text"`
-	UserID int    `db:"userID"`
+	User   string `db:"user"`
 	PostID int    `db:"postID"`
 }

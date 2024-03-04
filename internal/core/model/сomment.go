@@ -2,6 +2,6 @@ package model
 
 type Comment struct {
 	Text   string
-	UserID int
+	User   string
 	PostID int
 }

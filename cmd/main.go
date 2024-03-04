@@ -27,7 +27,9 @@ func main() {
 
 	postServ := service.NewPostService(manager.PostRepository)
 
-	router := http.InitRoutes(serv, postServ)
+	commentServ := service.NewCommentService(manager.CommentRepository)
+
+	router := http.InitRoutes(serv, postServ, commentServ)
 
 	if err := http2.ListenAndServe(":2222", router); err != nil {
 		log.Fatal(err)
