@@ -10,6 +10,7 @@ type RepositoryManager struct {
 	repository.AuthRepository
 	repository.PostRepository
 	repository.CommentRepository
+	repository.LikeRepository
 }
 
 func NewRepositoryManager(db *db.Db) RepositoryManager {
@@ -17,5 +18,6 @@ func NewRepositoryManager(db *db.Db) RepositoryManager {
 		postgres.NewRepo(db),
 		postgres.NewPostRepo(db),
 		postgres.NewCommentRepo(db),
+		postgres.NewLikeRepo(db),
 	}
 }

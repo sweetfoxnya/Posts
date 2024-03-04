@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func InitRoutes(service service.AuthService, postService service.PostService, commentService service.CommentService) *gin.Engine {
+func InitRoutes(service service.AuthService, postService service.PostService, commentService service.CommentService, likeService service.LikeService) *gin.Engine {
 	router := gin.New()
 
 	router.POST("/register", handler.RegisterUser(service))
@@ -26,6 +26,13 @@ func InitRoutes(service service.AuthService, postService service.PostService, co
 		com.GET("/comment/:id", handler.GetComment(commentService))
 		com.DELETE("/delete/:id", handler.DeleteComment(commentService))
 		com.PUT("/update/:id", handler.UpdateComment(commentService))
+	}
+
+	like := router.Group("/like", middleware.AuthMiddleware)
+	{
+		like.POST("/like", handler.PutLike(likeService))
+		like.GET("/likes/:id", handler.GetLikes(likeService))
+		like.DELETE("/delete/:id", handler.DeleteLike(likeService))
 	}
 
 	return router

@@ -23,3 +23,9 @@ type CommentService interface {
 	DeleteComment(ctx context.Context, commentId int) error
 	UpdateComment(ctx context.Context, comment model.Comment, commentId int) error
 }
+
+type LikeService interface {
+	PutLike(ctx context.Context, like model.Like) (int, error)
+	GetLikes(ctx context.Context, likeId int) (model.Like, error)
+	DeleteLike(ctx context.Context, likeId int) error
+}

@@ -14,6 +14,7 @@ type _commentRepository struct {
 }
 
 func NewCommentRepo(db *db.Db) repository.CommentRepository {
+
 	return _commentRepository{db}
 }
 
