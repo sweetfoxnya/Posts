@@ -28,13 +28,12 @@ func (likeRepository _likeRepository) PutLike(ctx context.Context, like model.Li
 	return id, err
 }
 
-// доделать
-func (likeRepository _likeRepository) GetLikes(ctx context.Context, likeId int) (model.Like, error) {
+func (likeRepository _likeRepository) GetLikes(ctx context.Context, postId int) (model.Like, error) {
 	var like dbModel.Like
 
 	err := likeRepository.db.PgConn.QueryRow(ctx,
-		`SELECT l.postID FROM public.like l WHERE l.id=$1`,
-		likeId).Scan(&like.PostID)
+		`SELECT l.id FROM public.like l WHERE l.postID=$1`,
+		postId).Scan(&like.PostID)
 
 	if err != nil {
 		return model.Like{}, fmt.Errorf("ошибка получения лайков: %s", err.Error())

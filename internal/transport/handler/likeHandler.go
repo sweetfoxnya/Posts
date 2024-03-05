@@ -35,7 +35,6 @@ func PutLike(service service.LikeService) gin.HandlerFunc {
 	}
 }
 
-// доделать
 func GetLikes(service service.LikeService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id := c.Param("id")

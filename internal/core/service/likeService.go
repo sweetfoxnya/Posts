@@ -28,7 +28,6 @@ func (likeService _likeService) PutLike(ctx context.Context, like model.Like) (i
 	return id, nil
 }
 
-// доделать
 func (likeService _likeService) GetLikes(ctx context.Context, postId int) (model.Like, error) {
 	return likeService.repo.GetLikes(ctx, postId)
 }
