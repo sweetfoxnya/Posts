@@ -41,7 +41,7 @@ func (repo _authRepo) Register(ctx context.Context, login, hashPassword string) 
 	)
 
 	if err != nil {
-		return "", fmt.Errorf("не смогли создать: %x", err)
+		return "", fmt.Errorf("не смогли создать: %x", err.Error())
 	}
 
 	return login, nil

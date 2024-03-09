@@ -14,6 +14,7 @@ type _postRepository struct {
 }
 
 func NewPostRepo(db *db.Db) repository.PostRepository {
+
 	return _postRepository{db}
 }
 

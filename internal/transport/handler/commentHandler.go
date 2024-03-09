@@ -11,7 +11,7 @@ import (
 
 type handlerComment struct {
 	Text   string `json:"text"`
-	User   string `json:"user"`
+	Login  string `json:"login"`
 	PostID int    `json:"postID"`
 }
 
@@ -28,7 +28,7 @@ func CreateComment(service service.CommentService) gin.HandlerFunc {
 			return
 		}
 
-		comment.User = login
+		comment.Login = login
 
 		id, err := service.CreateComment(c.Request.Context(), model.Comment(comment))
 
