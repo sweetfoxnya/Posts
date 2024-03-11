@@ -52,7 +52,7 @@ func (commentRepository _commentRepository) DeleteComment(ctx context.Context, c
 		return fmt.Errorf("ошибка удаления комментария: %s", err.Error())
 	}
 
-	return err
+	return nil
 }
 
 func (commentRepository _commentRepository) UpdateComment(ctx context.Context, comment model.Comment, commentId int) error {
@@ -69,5 +69,5 @@ func (commentRepository _commentRepository) UpdateComment(ctx context.Context, c
 		return fmt.Errorf("ошибка изменения комментария: %s", err.Error())
 	}
 
-	return err
+	return nil
 }

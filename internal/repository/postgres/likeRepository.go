@@ -39,7 +39,7 @@ func (likeRepository _likeRepository) GetLike(ctx context.Context, likeId int) (
 		return model.Like{}, fmt.Errorf("ошибка получения лайков: %s", err.Error())
 	}
 
-	return model.Like(like), err
+	return model.Like(like), nil
 
 }
 
@@ -49,5 +49,5 @@ func (likeRepository _likeRepository) DeleteLike(ctx context.Context, likeId int
 		return fmt.Errorf("ошибка удаления лайка: %s", err.Error())
 	}
 
-	return err
+	return nil
 }
