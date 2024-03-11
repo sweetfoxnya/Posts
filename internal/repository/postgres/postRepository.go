@@ -53,7 +53,7 @@ func (postRepository _postRepository) DeletePost(ctx context.Context, postId int
 		return fmt.Errorf("ошибка удаления поста: %s", err.Error())
 	}
 
-	return nil
+	return err
 }
 
 func (postRepository _postRepository) UpdatePost(ctx context.Context, post model.Post, postId int) error {

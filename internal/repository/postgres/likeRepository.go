@@ -31,9 +31,9 @@ func (likeRepository _likeRepository) PutLike(ctx context.Context, like model.Li
 func (likeRepository _likeRepository) GetLikes(ctx context.Context, postId int) (model.Like, error) {
 	var like dbModel.Like
 
-	err := likeRepository.db.PgConn.QueryRow(ctx,
+	err := likeRepository.db.PgConn.Query(ctx,
 		`SELECT l.id FROM public.like l WHERE l.postID=$1`,
-		postId).Scan(&like.PostID)
+		postId).Scan(&like.ID)
 
 	if err != nil {
 		return model.Like{}, fmt.Errorf("ошибка получения лайков: %s", err.Error())

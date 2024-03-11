@@ -116,6 +116,13 @@ func UpdatePost(service service.PostService) gin.HandlerFunc {
 			return
 		}
 
+		if err := c.BindJSON(&updatedPost); err != nil {
+			c.AbortWithStatusJSON(http.StatusBadRequest,
+				gin.H{"message": "неверное тело запроса"})
+
+			return
+		}
+
 		err = service.UpdatePost(c.Request.Context(), updatedPost, numberId)
 
 		if err != nil {

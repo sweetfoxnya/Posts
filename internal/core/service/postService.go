@@ -40,7 +40,7 @@ func (postService _postService) DeletePost(ctx context.Context, postId int) erro
 		return errors.New("ошибка удаления поста")
 	}
 
-	return nil
+	return err
 }
 
 func (postService _postService) UpdatePost(ctx context.Context, post model.Post, postId int) error {

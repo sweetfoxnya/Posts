@@ -115,6 +115,13 @@ func UpdateComment(service service.CommentService) gin.HandlerFunc {
 			return
 		}
 
+		if err := c.BindJSON(&updatedComment); err != nil {
+			c.AbortWithStatusJSON(http.StatusBadRequest,
+				gin.H{"message": "неверное тело запроса"})
+
+			return
+		}
+
 		err = service.UpdateComment(c.Request.Context(), updatedComment, numberId)
 
 		if err != nil {
