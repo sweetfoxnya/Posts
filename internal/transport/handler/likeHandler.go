@@ -48,7 +48,7 @@ func GetLikes(service service.LikeService) gin.HandlerFunc {
 			return
 		}
 
-		like, err := service.GetLikes(c.Request.Context(), numberId)
+		like, err := service.GetLike(c.Request.Context(), numberId)
 
 		if err != nil {
 			slog.Error(err.Error())

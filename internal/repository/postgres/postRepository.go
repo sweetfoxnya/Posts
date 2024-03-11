@@ -43,7 +43,7 @@ func (postRepository _postRepository) GetPost(ctx context.Context, postId int) (
 		return model.Post{}, fmt.Errorf("ошибка получения поста: %s", err.Error())
 	}
 
-	return model.Post(post), nil
+	return model.Post(post), err
 
 }
 
@@ -71,5 +71,5 @@ func (postRepository _postRepository) UpdatePost(ctx context.Context, post model
 		return fmt.Errorf("ошибка изменения поста: %s", err.Error())
 	}
 
-	return nil
+	return err
 }

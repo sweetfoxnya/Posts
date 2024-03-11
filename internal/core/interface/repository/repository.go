@@ -26,6 +26,6 @@ type CommentRepository interface {
 
 type LikeRepository interface {
 	PutLike(ctx context.Context, like model.Like) (int, error)
-	GetLikes(ctx context.Context, likeId int) (model.Like, error)
+	GetLike(ctx context.Context, likeId int) (model.Like, error)
 	DeleteLike(ctx context.Context, likeId int) error
 }

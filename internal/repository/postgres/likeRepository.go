@@ -28,18 +28,18 @@ func (likeRepository _likeRepository) PutLike(ctx context.Context, like model.Li
 	return id, err
 }
 
-func (likeRepository _likeRepository) GetLikes(ctx context.Context, postId int) (model.Like, error) {
+func (likeRepository _likeRepository) GetLike(ctx context.Context, likeId int) (model.Like, error) {
 	var like dbModel.Like
 
-	err := likeRepository.db.PgConn.Query(ctx,
-		`SELECT l.id FROM public.like l WHERE l.postID=$1`,
-		postId).Scan(&like.ID)
+	err := likeRepository.db.PgConn.QueryRow(ctx,
+		`SELECT l.postID FROM public.like l WHERE l.id=$1`,
+		likeId).Scan(&like.PostID)
 
 	if err != nil {
 		return model.Like{}, fmt.Errorf("ошибка получения лайков: %s", err.Error())
 	}
 
-	return model.Like(like), nil
+	return model.Like(like), err
 
 }
 
@@ -49,5 +49,5 @@ func (likeRepository _likeRepository) DeleteLike(ctx context.Context, likeId int
 		return fmt.Errorf("ошибка удаления лайка: %s", err.Error())
 	}
 
-	return nil
+	return err
 }

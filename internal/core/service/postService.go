@@ -51,5 +51,5 @@ func (postService _postService) UpdatePost(ctx context.Context, post model.Post,
 		return errors.New("ошибка изменения поста")
 	}
 
-	return nil
+	return err
 }

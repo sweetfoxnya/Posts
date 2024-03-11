@@ -40,7 +40,7 @@ func (commentService _commentService) DeleteComment(ctx context.Context, comment
 		return errors.New("ошибка удаления комметария")
 	}
 
-	return nil
+	return err
 }
 
 func (commentService _commentService) UpdateComment(ctx context.Context, comment model.Comment, commentId int) error {
@@ -51,5 +51,5 @@ func (commentService _commentService) UpdateComment(ctx context.Context, comment
 		return errors.New("ошибка изменения комментария")
 	}
 
-	return nil
+	return err
 }

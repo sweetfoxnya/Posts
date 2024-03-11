@@ -28,8 +28,8 @@ func (likeService _likeService) PutLike(ctx context.Context, like model.Like) (i
 	return id, nil
 }
 
-func (likeService _likeService) GetLikes(ctx context.Context, postId int) (model.Like, error) {
-	return likeService.repo.GetLikes(ctx, postId)
+func (likeService _likeService) GetLike(ctx context.Context, likeId int) (model.Like, error) {
+	return likeService.repo.GetLike(ctx, likeId)
 }
 
 func (likeService _likeService) DeleteLike(ctx context.Context, likeId int) error {
@@ -40,5 +40,5 @@ func (likeService _likeService) DeleteLike(ctx context.Context, likeId int) erro
 		return errors.New("ошибка удаления лайка")
 	}
 
-	return nil
+	return err
 }
